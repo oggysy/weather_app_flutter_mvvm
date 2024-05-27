@@ -12,10 +12,13 @@ dependencies:
     sdk: flutter
   flutter_launcher_icons: ^0.13.1
   flutter_native_splash: ^2.4.0
+  flutter_riverpod: ^2.5.1
   freezed: ^2.5.2
   freezed_annotation: ^2.4.1
   gap: ^3.0.1
   json_annotation: ^4.9.0
+  riverpod_annotation: ^2.3.5
+  riverpod_generator: ^2.4.2
   sticky_headers: ^0.3.0+2
 
 flutter_native_splash:
