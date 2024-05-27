@@ -11,16 +11,17 @@ dependencies:
     sdk: flutter
   flutter_launcher_icons: ^0.13.1
   flutter_native_splash: ^2.4.0
+  freezed: ^2.5.3
   gap: ^3.0.1
   sticky_headers: ^0.3.0+2
 
 flutter_native_splash:
-  image: 'assets/images/splash_logo.png' 
+  image: 'assets/images/splash_logo.png'
   color: '#ffffff'
 
 flutter_icons:
   ios: true
-  image_path: 'assets/images/splash_logo.png' 
+  image_path: 'assets/images/splash_logo.png'
   remove_alpha_ios: true
   android: true
 
