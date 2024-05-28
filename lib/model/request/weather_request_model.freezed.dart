@@ -31,32 +31,35 @@ WeatherRequestModel _$WeatherRequestModelFromJson(Map<String, dynamic> json) {
 mixin _$WeatherRequestModel {
   String get units => throw _privateConstructorUsedError;
   String get lang => throw _privateConstructorUsedError;
+  String get count => throw _privateConstructorUsedError;
   String get appid => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
-            String city, String units, String lang, String appid)
+            String city, String units, String lang, String count, String appid)
         byCity,
-    required TResult Function(
-            double lat, double lon, String units, String lang, String appid)
+    required TResult Function(double lat, double lon, String units, String lang,
+            String count, String appid)
         byLocation,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String city, String units, String lang, String appid)?
-        byCity,
     TResult? Function(
-            double lat, double lon, String units, String lang, String appid)?
+            String city, String units, String lang, String count, String appid)?
+        byCity,
+    TResult? Function(double lat, double lon, String units, String lang,
+            String count, String appid)?
         byLocation,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String city, String units, String lang, String appid)?
-        byCity,
     TResult Function(
-            double lat, double lon, String units, String lang, String appid)?
+            String city, String units, String lang, String count, String appid)?
+        byCity,
+    TResult Function(double lat, double lon, String units, String lang,
+            String count, String appid)?
         byLocation,
     required TResult orElse(),
   }) =>
@@ -92,7 +95,7 @@ abstract class $WeatherRequestModelCopyWith<$Res> {
           WeatherRequestModel value, $Res Function(WeatherRequestModel) then) =
       _$WeatherRequestModelCopyWithImpl<$Res, WeatherRequestModel>;
   @useResult
-  $Res call({String units, String lang, String appid});
+  $Res call({String units, String lang, String count, String appid});
 }
 
 /// @nodoc
@@ -110,6 +113,7 @@ class _$WeatherRequestModelCopyWithImpl<$Res, $Val extends WeatherRequestModel>
   $Res call({
     Object? units = null,
     Object? lang = null,
+    Object? count = null,
     Object? appid = null,
   }) {
     return _then(_value.copyWith(
@@ -120,6 +124,10 @@ class _$WeatherRequestModelCopyWithImpl<$Res, $Val extends WeatherRequestModel>
       lang: null == lang
           ? _value.lang
           : lang // ignore: cast_nullable_to_non_nullable
+              as String,
+      count: null == count
+          ? _value.count
+          : count // ignore: cast_nullable_to_non_nullable
               as String,
       appid: null == appid
           ? _value.appid
@@ -137,7 +145,8 @@ abstract class _$$ByCityImplCopyWith<$Res>
       __$$ByCityImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String city, String units, String lang, String appid});
+  $Res call(
+      {String city, String units, String lang, String count, String appid});
 }
 
 /// @nodoc
@@ -154,6 +163,7 @@ class __$$ByCityImplCopyWithImpl<$Res>
     Object? city = null,
     Object? units = null,
     Object? lang = null,
+    Object? count = null,
     Object? appid = null,
   }) {
     return _then(_$ByCityImpl(
@@ -168,6 +178,10 @@ class __$$ByCityImplCopyWithImpl<$Res>
       lang: null == lang
           ? _value.lang
           : lang // ignore: cast_nullable_to_non_nullable
+              as String,
+      count: null == count
+          ? _value.count
+          : count // ignore: cast_nullable_to_non_nullable
               as String,
       appid: null == appid
           ? _value.appid
@@ -184,6 +198,7 @@ class _$ByCityImpl implements _ByCity {
       {required this.city,
       this.units = 'metric',
       this.lang = 'ja',
+      this.count = '8',
       required this.appid,
       final String? $type})
       : $type = $type ?? 'byCity';
@@ -200,6 +215,9 @@ class _$ByCityImpl implements _ByCity {
   @JsonKey()
   final String lang;
   @override
+  @JsonKey()
+  final String count;
+  @override
   final String appid;
 
   @JsonKey(name: 'runtimeType')
@@ -207,7 +225,7 @@ class _$ByCityImpl implements _ByCity {
 
   @override
   String toString() {
-    return 'WeatherRequestModel.byCity(city: $city, units: $units, lang: $lang, appid: $appid)';
+    return 'WeatherRequestModel.byCity(city: $city, units: $units, lang: $lang, count: $count, appid: $appid)';
   }
 
   @override
@@ -218,12 +236,13 @@ class _$ByCityImpl implements _ByCity {
             (identical(other.city, city) || other.city == city) &&
             (identical(other.units, units) || other.units == units) &&
             (identical(other.lang, lang) || other.lang == lang) &&
+            (identical(other.count, count) || other.count == count) &&
             (identical(other.appid, appid) || other.appid == appid));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, city, units, lang, appid);
+  int get hashCode => Object.hash(runtimeType, city, units, lang, count, appid);
 
   @JsonKey(ignore: true)
   @override
@@ -235,39 +254,41 @@ class _$ByCityImpl implements _ByCity {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
-            String city, String units, String lang, String appid)
+            String city, String units, String lang, String count, String appid)
         byCity,
-    required TResult Function(
-            double lat, double lon, String units, String lang, String appid)
+    required TResult Function(double lat, double lon, String units, String lang,
+            String count, String appid)
         byLocation,
   }) {
-    return byCity(city, units, lang, appid);
+    return byCity(city, units, lang, count, appid);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String city, String units, String lang, String appid)?
-        byCity,
     TResult? Function(
-            double lat, double lon, String units, String lang, String appid)?
+            String city, String units, String lang, String count, String appid)?
+        byCity,
+    TResult? Function(double lat, double lon, String units, String lang,
+            String count, String appid)?
         byLocation,
   }) {
-    return byCity?.call(city, units, lang, appid);
+    return byCity?.call(city, units, lang, count, appid);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String city, String units, String lang, String appid)?
-        byCity,
     TResult Function(
-            double lat, double lon, String units, String lang, String appid)?
+            String city, String units, String lang, String count, String appid)?
+        byCity,
+    TResult Function(double lat, double lon, String units, String lang,
+            String count, String appid)?
         byLocation,
     required TResult orElse(),
   }) {
     if (byCity != null) {
-      return byCity(city, units, lang, appid);
+      return byCity(city, units, lang, count, appid);
     }
     return orElse();
   }
@@ -316,6 +337,7 @@ abstract class _ByCity implements WeatherRequestModel {
       {required final String city,
       final String units,
       final String lang,
+      final String count,
       required final String appid}) = _$ByCityImpl;
 
   factory _ByCity.fromJson(Map<String, dynamic> json) = _$ByCityImpl.fromJson;
@@ -325,6 +347,8 @@ abstract class _ByCity implements WeatherRequestModel {
   String get units;
   @override
   String get lang;
+  @override
+  String get count;
   @override
   String get appid;
   @override
@@ -341,7 +365,13 @@ abstract class _$$ByLocationImplCopyWith<$Res>
       __$$ByLocationImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({double lat, double lon, String units, String lang, String appid});
+  $Res call(
+      {double lat,
+      double lon,
+      String units,
+      String lang,
+      String count,
+      String appid});
 }
 
 /// @nodoc
@@ -359,6 +389,7 @@ class __$$ByLocationImplCopyWithImpl<$Res>
     Object? lon = null,
     Object? units = null,
     Object? lang = null,
+    Object? count = null,
     Object? appid = null,
   }) {
     return _then(_$ByLocationImpl(
@@ -378,6 +409,10 @@ class __$$ByLocationImplCopyWithImpl<$Res>
           ? _value.lang
           : lang // ignore: cast_nullable_to_non_nullable
               as String,
+      count: null == count
+          ? _value.count
+          : count // ignore: cast_nullable_to_non_nullable
+              as String,
       appid: null == appid
           ? _value.appid
           : appid // ignore: cast_nullable_to_non_nullable
@@ -394,6 +429,7 @@ class _$ByLocationImpl implements _ByLocation {
       required this.lon,
       this.units = 'metric',
       this.lang = 'ja',
+      this.count = '8',
       required this.appid,
       final String? $type})
       : $type = $type ?? 'byLocation';
@@ -412,6 +448,9 @@ class _$ByLocationImpl implements _ByLocation {
   @JsonKey()
   final String lang;
   @override
+  @JsonKey()
+  final String count;
+  @override
   final String appid;
 
   @JsonKey(name: 'runtimeType')
@@ -419,7 +458,7 @@ class _$ByLocationImpl implements _ByLocation {
 
   @override
   String toString() {
-    return 'WeatherRequestModel.byLocation(lat: $lat, lon: $lon, units: $units, lang: $lang, appid: $appid)';
+    return 'WeatherRequestModel.byLocation(lat: $lat, lon: $lon, units: $units, lang: $lang, count: $count, appid: $appid)';
   }
 
   @override
@@ -431,12 +470,14 @@ class _$ByLocationImpl implements _ByLocation {
             (identical(other.lon, lon) || other.lon == lon) &&
             (identical(other.units, units) || other.units == units) &&
             (identical(other.lang, lang) || other.lang == lang) &&
+            (identical(other.count, count) || other.count == count) &&
             (identical(other.appid, appid) || other.appid == appid));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, lat, lon, units, lang, appid);
+  int get hashCode =>
+      Object.hash(runtimeType, lat, lon, units, lang, count, appid);
 
   @JsonKey(ignore: true)
   @override
@@ -448,39 +489,41 @@ class _$ByLocationImpl implements _ByLocation {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
-            String city, String units, String lang, String appid)
+            String city, String units, String lang, String count, String appid)
         byCity,
-    required TResult Function(
-            double lat, double lon, String units, String lang, String appid)
+    required TResult Function(double lat, double lon, String units, String lang,
+            String count, String appid)
         byLocation,
   }) {
-    return byLocation(lat, lon, units, lang, appid);
+    return byLocation(lat, lon, units, lang, count, appid);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String city, String units, String lang, String appid)?
-        byCity,
     TResult? Function(
-            double lat, double lon, String units, String lang, String appid)?
+            String city, String units, String lang, String count, String appid)?
+        byCity,
+    TResult? Function(double lat, double lon, String units, String lang,
+            String count, String appid)?
         byLocation,
   }) {
-    return byLocation?.call(lat, lon, units, lang, appid);
+    return byLocation?.call(lat, lon, units, lang, count, appid);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String city, String units, String lang, String appid)?
-        byCity,
     TResult Function(
-            double lat, double lon, String units, String lang, String appid)?
+            String city, String units, String lang, String count, String appid)?
+        byCity,
+    TResult Function(double lat, double lon, String units, String lang,
+            String count, String appid)?
         byLocation,
     required TResult orElse(),
   }) {
     if (byLocation != null) {
-      return byLocation(lat, lon, units, lang, appid);
+      return byLocation(lat, lon, units, lang, count, appid);
     }
     return orElse();
   }
@@ -530,6 +573,7 @@ abstract class _ByLocation implements WeatherRequestModel {
       required final double lon,
       final String units,
       final String lang,
+      final String count,
       required final String appid}) = _$ByLocationImpl;
 
   factory _ByLocation.fromJson(Map<String, dynamic> json) =
@@ -541,6 +585,8 @@ abstract class _ByLocation implements WeatherRequestModel {
   String get units;
   @override
   String get lang;
+  @override
+  String get count;
   @override
   String get appid;
   @override

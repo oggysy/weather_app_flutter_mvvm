@@ -10,6 +10,7 @@ _$ByCityImpl _$$ByCityImplFromJson(Map<String, dynamic> json) => _$ByCityImpl(
       city: json['city'] as String,
       units: json['units'] as String? ?? 'metric',
       lang: json['lang'] as String? ?? 'ja',
+      count: json['count'] as String? ?? '8',
       appid: json['appid'] as String,
       $type: json['runtimeType'] as String?,
     );
@@ -19,6 +20,7 @@ Map<String, dynamic> _$$ByCityImplToJson(_$ByCityImpl instance) =>
       'city': instance.city,
       'units': instance.units,
       'lang': instance.lang,
+      'count': instance.count,
       'appid': instance.appid,
       'runtimeType': instance.$type,
     };
@@ -29,6 +31,7 @@ _$ByLocationImpl _$$ByLocationImplFromJson(Map<String, dynamic> json) =>
       lon: (json['lon'] as num).toDouble(),
       units: json['units'] as String? ?? 'metric',
       lang: json['lang'] as String? ?? 'ja',
+      count: json['count'] as String? ?? '8',
       appid: json['appid'] as String,
       $type: json['runtimeType'] as String?,
     );
@@ -39,6 +42,7 @@ Map<String, dynamic> _$$ByLocationImplToJson(_$ByLocationImpl instance) =>
       'lon': instance.lon,
       'units': instance.units,
       'lang': instance.lang,
+      'count': instance.count,
       'appid': instance.appid,
       'runtimeType': instance.$type,
     };

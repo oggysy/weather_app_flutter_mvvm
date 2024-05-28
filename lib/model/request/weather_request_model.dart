@@ -9,6 +9,7 @@ class WeatherRequestModel with _$WeatherRequestModel {
     required String city,
     @Default('metric') String units,
     @Default('ja') String lang,
+    @Default('8') String count,
     required String appid,
   }) = _ByCity;
 
@@ -17,6 +18,7 @@ class WeatherRequestModel with _$WeatherRequestModel {
     required double lon,
     @Default('metric') String units,
     @Default('ja') String lang,
+    @Default('8') String count,
     required String appid,
   }) = _ByLocation;
 
@@ -27,17 +29,19 @@ class WeatherRequestModel with _$WeatherRequestModel {
 extension WeatherRequestModelX on WeatherRequestModel {
   Map<String, dynamic> toQueryParameters() {
     return when(
-      byCity: (city, units, lang, appid) => {
+      byCity: (city, units, lang, count, appid) => {
         'q': city,
         'units': units,
         'lang': lang,
+        'cnt': count,
         'appid': appid,
       },
-      byLocation: (lat, lon, units, lang, appid) => {
+      byLocation: (lat, lon, units, lang, count, appid) => {
         'lat': lat,
         'lon': lon,
         'units': units,
         'lang': lang,
+        'cnt': count,
         'appid': appid,
       },
     );
