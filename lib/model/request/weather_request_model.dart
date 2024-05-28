@@ -23,3 +23,23 @@ class WeatherRequestModel with _$WeatherRequestModel {
   factory WeatherRequestModel.fromJson(Map<String, dynamic> json) =>
       _$WeatherRequestModelFromJson(json);
 }
+
+extension WeatherRequestModelX on WeatherRequestModel {
+  Map<String, dynamic> toQueryParameters() {
+    return when(
+      byCity: (city, units, lang, appid) => {
+        'q': city,
+        'units': units,
+        'lang': lang,
+        'appid': appid,
+      },
+      byLocation: (lat, lon, units, lang, appid) => {
+        'lat': lat,
+        'lon': lon,
+        'units': units,
+        'lang': lang,
+        'appid': appid,
+      },
+    );
+  }
+}
