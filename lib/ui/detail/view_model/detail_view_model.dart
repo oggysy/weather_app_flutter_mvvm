@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:weather_app_flutter_mvvm/repository/weather_repository_provider.dart';
 import 'package:weather_app_flutter_mvvm/ui/detail/ui_state/detail_ui_state.dart';
@@ -43,5 +45,18 @@ class DetailViewModel extends _$DetailViewModel {
         return uiState;
       },
     );
+  }
+
+  Future<Uint8List?> fetchIconImage({
+    required String iconName,
+  }) async {
+    try {
+      final response = await ref
+          .read(weatherRepositoryProvider)
+          .fetchIconImage(iconName: iconName);
+      return response;
+    } catch (e) {
+      return null;
+    }
   }
 }
