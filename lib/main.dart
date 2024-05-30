@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:weather_app_flutter_mvvm/ui/home/view/home_page.dart';
 
 void main() {
   runApp(const MainApp());
@@ -11,9 +12,7 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
-        ),
+        body: HomePage(),
       ),
     );
   }
