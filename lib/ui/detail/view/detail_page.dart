@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
@@ -91,7 +93,7 @@ class _DetailPageState extends ConsumerState<DetailPage> {
                                   minTemperature:
                                       event.main.temp_min.toStringAsFixed(1),
                                   humidityLevel: event.main.humidity.toString(),
-                                  imageName: "01",
+                                  imageName: event.weather.first.icon,
                                   time: event.dt.toStringHHMMFromEpoch(),
                                 ),
                               ),
@@ -139,10 +141,38 @@ class _WeatherListCell extends StatelessWidget {
           Text(time),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: Image.asset(
-              'assets/images/splash_logo.png',
-              width: 50,
-              height: 50,
+            child: Consumer(
+              builder: (context, ref, _) {
+                final image = ref
+                    .watch(detailViewModelProvider.notifier)
+                    .fetchIconImage(iconName: imageName);
+                return FutureBuilder(
+                  future: image,
+                  builder: (BuildContext context,
+                      AsyncSnapshot<Uint8List?> snapshot) {
+                    switch (snapshot.connectionState) {
+                      case ConnectionState.done:
+                        if (snapshot.hasData) {
+                          return Image.memory(
+                            snapshot.data!,
+                            width: 50,
+                            height: 50,
+                          );
+                        } else {
+                          return const Text('No data');
+                        }
+                      case ConnectionState.waiting:
+                      case ConnectionState.none:
+                        return const SizedBox(
+                          width: 50,
+                          height: 50,
+                        );
+                      default:
+                        return const Text('No data');
+                    }
+                  },
+                );
+              },
             ),
           ),
           Column(
