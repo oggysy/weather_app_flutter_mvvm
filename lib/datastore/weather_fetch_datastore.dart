@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:dio/dio.dart';
 import 'package:weather_app_flutter_mvvm/datastore/weather_fetch_datastore_interface.dart';
 import 'package:weather_app_flutter_mvvm/model/request/weather_request_model.dart';
@@ -9,6 +11,7 @@ class WeatherFetchDataStore implements WeatherFetchDataStoreInterface {
   WeatherFetchDataStore({required this.dio});
 
   final String _baseUrl = "https://api.openweathermap.org/data/2.5/forecast";
+  final String _imageUrl = 'https://openweathermap.org/img/wn/';
   final String _apikey = Env.key;
 
   @override
@@ -33,6 +36,21 @@ class WeatherFetchDataStore implements WeatherFetchDataStoreInterface {
       appid: _apikey,
     );
     return _fetchWeather(parameter: request.toJson());
+  }
+
+  @override
+  Future<Uint8List> fetchIconImage({required String iconName}) async {
+    try {
+      final response = await dio.get(
+        '$_imageUrl$iconName.png',
+        options: Options(
+          responseType: ResponseType.bytes,
+        ),
+      );
+      return response.data;
+    } on Exception catch (exception) {
+      throw Exception(exception);
+    }
   }
 
   Future<WeatherResponseModel> _fetchWeather(
