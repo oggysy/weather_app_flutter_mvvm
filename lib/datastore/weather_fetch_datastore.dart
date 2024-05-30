@@ -8,7 +8,7 @@ class WeatherFetchDataStore implements WeatherFetchDataStoreInterface {
   final Dio dio;
   WeatherFetchDataStore({required this.dio});
 
-  final String _baseUrl = "api.openweathermap.org/data/2.5/forecast?r";
+  final String _baseUrl = "https://api.openweathermap.org/data/2.5/forecast";
   final String _apikey = Env.key;
 
   @override
