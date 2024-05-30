@@ -1,82 +1,116 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:sticky_headers/sticky_headers.dart';
+import 'package:weather_app_flutter_mvvm/extension/int_extension.dart';
+import 'package:weather_app_flutter_mvvm/model/response/weathre_response_model.dart';
+import 'package:weather_app_flutter_mvvm/ui/detail/component/pop_chart.dart';
+import 'package:weather_app_flutter_mvvm/ui/detail/view_model/detail_view_model.dart';
 
-class DetailPage extends StatelessWidget {
-  final Map<String, List<String>> weather = const {
-    '5月27日': [
-      '天気情報1',
-      '天気情報2',
-    ],
-    '5月28日': [
-      '天気情報3',
-      '天気情報4',
-      '天気情報5',
-      '天気情報6',
-      '天気情報7',
-      '天気情報8',
-    ],
-  };
-  const DetailPage({super.key});
+class DetailPage extends ConsumerStatefulWidget {
+  const DetailPage(this.prefecture, {super.key});
+
+  final String prefecture;
+
+  @override
+  ConsumerState<DetailPage> createState() => _DetailPageState();
+}
+
+class _DetailPageState extends ConsumerState<DetailPage> {
+  @override
+  void initState() {
+    super.initState();
+    Future.microtask(() {
+      ref
+          .read(detailViewModelProvider.notifier)
+          .fetchWeatherByCity(widget.prefecture);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
+    final uiState = ref.watch(detailViewModelProvider);
     return Scaffold(
       appBar: AppBar(),
       body: Center(
-        child: Column(
-          children: [
-            const Text(
-              "東京都",
-              style: TextStyle(
-                fontSize: 20,
+        child: uiState.when(data: (data) {
+          if (data == null) {
+            return const CircularProgressIndicator();
+          }
+          return Column(
+            children: [
+              Text(
+                data.city,
+                style: const TextStyle(
+                  fontSize: 20,
+                ),
               ),
-            ),
-            const Text('2024年5月13日'),
-            const Text('降水確率'),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
+              const Text('2024年5月13日'),
+              const Text('降水確率'),
+              SizedBox(
                 width: double.infinity,
                 height: 200.0,
-                color: Colors.black,
+                child: Padding(
+                  padding: const EdgeInsets.all(
+                    8.0,
+                  ),
+                  child: PopChart(
+                    timePopData: data.chartData,
+                  ),
+                ),
               ),
-            ),
-            Expanded(
-              child: ListView.builder(
-                itemCount: weather.length,
-                itemBuilder: (context, index) {
-                  String date = weather.keys.elementAt(index);
-                  List<String> threeHourWethers = weather[date] ?? [];
-                  return StickyHeader(
-                    header: Container(
-                      height: 30.0,
-                      color: const Color.fromARGB(249, 244, 244, 244),
-                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        date,
+              Expanded(
+                child: ListView.builder(
+                  itemCount: data.threeHoursWeather.length,
+                  itemBuilder: (context, index) {
+                    String date = data.threeHoursWeather.keys.elementAt(index);
+                    List<WeatherData>? threeHourWethers =
+                        data.threeHoursWeather[date];
+                    if (threeHourWethers == null) {
+                      return const Text('データがありません');
+                    }
+                    return StickyHeader(
+                      header: Container(
+                        height: 30.0,
+                        color: const Color.fromARGB(249, 244, 244, 244),
+                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          date,
+                        ),
                       ),
-                    ),
-                    content: Column(
-                      children: threeHourWethers
-                          .map(
-                            (event) => const _WeatherListCell(
-                              maxTemperature: "30.0",
-                              minTemperature: "20.0",
-                              humidityLevel: "30",
-                              imageName: "01",
-                              time: "18:00",
-                            ),
-                          )
-                          .toList(),
-                    ),
-                  );
-                },
+                      content: Column(
+                        children: threeHourWethers
+                            .map(
+                              (event) => Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 10),
+                                child: _WeatherListCell(
+                                  maxTemperature:
+                                      event.main.temp_max.toStringAsFixed(1),
+                                  minTemperature:
+                                      event.main.temp_min.toStringAsFixed(1),
+                                  humidityLevel: event.main.humidity.toString(),
+                                  imageName: "01",
+                                  time: event.dt.toStringHHMMFromEpoch(),
+                                ),
+                              ),
+                            )
+                            .toList(),
+                      ),
+                    );
+                  },
+                ),
               ),
-            ),
-          ],
-        ),
+            ],
+          );
+        }, error: (e, s) {
+          return Text(e.toString());
+        }, loading: () {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        }),
       ),
     );
   }
