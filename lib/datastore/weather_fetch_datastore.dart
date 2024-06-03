@@ -35,7 +35,7 @@ class WeatherFetchDataStore implements WeatherFetchDataStoreInterface {
       lon: lon,
       appid: _apikey,
     );
-    return _fetchWeather(parameter: request.toJson());
+    return _fetchWeather(parameter: request.toQueryParameters());
   }
 
   @override

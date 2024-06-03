@@ -27,6 +27,7 @@ class WeatherRequestModel with _$WeatherRequestModel {
 }
 
 extension WeatherRequestModelX on WeatherRequestModel {
+  // toJsonを使用するとruntimeTypeというパラメータが自動設定されてしまうため、別メソッドを定義
   Map<String, dynamic> toQueryParameters() {
     return when(
       byCity: (city, units, lang, count, appid) => {

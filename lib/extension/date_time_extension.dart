@@ -1,15 +1,15 @@
 import 'package:intl/intl.dart';
 
 extension DateTimeExtension on DateTime {
-  String get dateAsStringYMD {
+  String get asStringYMD {
     return DateFormat('y年M月d日').format(this);
   }
 
-  String get dateAsStringMMDD {
+  String get asStringMMDD {
     return DateFormat('MM月dd日').format(this);
   }
 
-  String get dateAsStringHHMM {
+  String get asStringHHMM {
     return DateFormat('HH:mm').format(this);
   }
 }

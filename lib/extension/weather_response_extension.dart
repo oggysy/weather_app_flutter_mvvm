@@ -5,8 +5,8 @@ import 'package:weather_app_flutter_mvvm/model/response/weathre_response_model.d
 extension WeatherResponseModelExtension on WeatherResponseModel {
   List<Map<String, int>> get timeAndPopList {
     return list.map((data) {
-      String time =
-          DateTime.fromMillisecondsSinceEpoch(data.dt * 1000).dateAsStringHHMM;
+      final String time =
+          DateTime.fromMillisecondsSinceEpoch(data.dt * 1000).asStringHHMM;
       int popPercent = (data.pop.isNaN || data.pop.isInfinite)
           ? 0
           : (data.pop * 100).toInt();
@@ -17,7 +17,7 @@ extension WeatherResponseModelExtension on WeatherResponseModel {
   Map<String, List<WeatherData>> groupByDate() {
     Map<String, List<WeatherData>> grouped = {};
     for (var data in list) {
-      String formattedDate = data.dt.toStringMMDDFromEpoch();
+      final String formattedDate = data.dt.toStringMMDDFromEpoch();
       if (!grouped.containsKey(formattedDate)) {
         grouped[formattedDate] = [];
       }
