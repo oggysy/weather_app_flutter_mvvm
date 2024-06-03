@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 
-class PopChart extends StatefulWidget {
+class PopChart extends StatelessWidget {
   const PopChart({
     super.key,
     required this.timePopData,
@@ -10,35 +10,10 @@ class PopChart extends StatefulWidget {
   final List<Map<String, int>> timePopData;
 
   @override
-  State<PopChart> createState() => _PopChartState();
-}
-
-class _PopChartState extends State<PopChart> {
-  List<FlSpot> spots = [];
-
-  @override
-  void initState() {
-    super.initState();
-    _setupSpots();
-  }
-
-  void _setupSpots() {
-    for (var i = 0; i < widget.timePopData.length; i++) {
-      double x = i.toDouble();
-      double y = widget.timePopData[i].values.first.toDouble();
-      spots.add(FlSpot(x, y));
-    }
-  }
-
-  @override
   Widget build(BuildContext context) {
     return LineChart(
       LineChartData(
-        lineBarsData: [
-          LineChartBarData(
-            spots: spots,
-          )
-        ],
+        lineBarsData: [LineChartBarData(spots: _setupSpots())],
         titlesData: FlTitlesData(
           bottomTitles: AxisTitles(
             sideTitles: SideTitles(
@@ -46,9 +21,9 @@ class _PopChartState extends State<PopChart> {
               interval: 1,
               getTitlesWidget: (double value, TitleMeta meta) {
                 final index = value.toInt();
-                if (index >= 0 && index < widget.timePopData.length) {
+                if (index >= 0 && index < timePopData.length) {
                   return Text(
-                    widget.timePopData[index].keys.first,
+                    timePopData[index].keys.first,
                     style: const TextStyle(
                       fontSize: 10,
                     ),
@@ -87,5 +62,15 @@ class _PopChartState extends State<PopChart> {
         minY: 0,
       ),
     );
+  }
+
+  List<FlSpot> _setupSpots() {
+    List<FlSpot> spots = [];
+    for (var i = 0; i < timePopData.length; i++) {
+      double x = i.toDouble();
+      double y = timePopData[i].values.first.toDouble();
+      spots.add(FlSpot(x, y));
+    }
+    return spots;
   }
 }
