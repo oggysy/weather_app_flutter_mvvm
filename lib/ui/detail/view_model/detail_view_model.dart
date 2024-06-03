@@ -7,7 +7,7 @@ part 'detail_view_model.g.dart';
 @riverpod
 class DetailViewModel extends _$DetailViewModel {
   @override
-  FutureOr<DetailUiState?> build() {
+  Future<DetailUiState?> build() {
     return Future<DetailUiState?>.value(null);
   }
 
