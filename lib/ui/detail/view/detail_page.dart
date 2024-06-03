@@ -87,9 +87,9 @@ class _DetailPageState extends ConsumerState<DetailPage> {
                                     const EdgeInsets.symmetric(vertical: 10),
                                 child: _WeatherListCell(
                                   maxTemperature:
-                                      event.main.temp_max.toStringAsFixed(1),
+                                      event.main.tempMax.toStringAsFixed(1),
                                   minTemperature:
-                                      event.main.temp_min.toStringAsFixed(1),
+                                      event.main.tempMin.toStringAsFixed(1),
                                   humidityLevel: event.main.humidity.toString(),
                                   imageName: "01",
                                   time: event.dt.toStringHHMMFromEpoch(),
