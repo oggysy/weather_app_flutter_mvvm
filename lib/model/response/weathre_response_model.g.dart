@@ -42,15 +42,15 @@ Map<String, dynamic> _$$WeatherDataImplToJson(_$WeatherDataImpl instance) =>
 
 _$WeatherItemImpl _$$WeatherItemImplFromJson(Map<String, dynamic> json) =>
     _$WeatherItemImpl(
-      temp_min: (json['temp_min'] as num).toDouble(),
-      temp_max: (json['temp_max'] as num).toDouble(),
+      tempMin: (json['temp_min'] as num).toDouble(),
+      tempMax: (json['temp_max'] as num).toDouble(),
       humidity: (json['humidity'] as num).toInt(),
     );
 
 Map<String, dynamic> _$$WeatherItemImplToJson(_$WeatherItemImpl instance) =>
     <String, dynamic>{
-      'temp_min': instance.temp_min,
-      'temp_max': instance.temp_max,
+      'temp_min': instance.tempMin,
+      'temp_max': instance.tempMax,
       'humidity': instance.humidity,
     };
 
