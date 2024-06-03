@@ -6,7 +6,7 @@ extension WeatherResponseModelExtension on WeatherResponseModel {
   List<Map<String, int>> get timeAndPopList {
     return list.map((data) {
       String time =
-          DateTime.fromMillisecondsSinceEpoch(data.dt * 1000).dateAsStringHHMM;
+          DateTime.fromMillisecondsSinceEpoch(data.dt * 1000).asStringHHMM;
       int popPercent = (data.pop.isNaN || data.pop.isInfinite)
           ? 0
           : (data.pop * 100).toInt();
