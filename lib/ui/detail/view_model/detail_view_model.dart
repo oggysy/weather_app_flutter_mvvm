@@ -7,8 +7,8 @@ part 'detail_view_model.g.dart';
 @riverpod
 class DetailViewModel extends _$DetailViewModel {
   @override
-  Future<DetailUiState?> build() {
-    return Future<DetailUiState?>.value(null);
+  AsyncValue<DetailUiState> build() {
+    return const AsyncLoading<DetailUiState>();
   }
 
   Future<void> fetchWeatherByCity(

@@ -31,9 +31,6 @@ class _DetailPageState extends ConsumerState<DetailPage> {
       appBar: AppBar(),
       body: Center(
         child: uiState.when(data: (data) {
-          if (data == null) {
-            return const CircularProgressIndicator();
-          }
           return Column(
             children: [
               Text(
