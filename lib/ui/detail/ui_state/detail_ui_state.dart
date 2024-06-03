@@ -7,7 +7,7 @@ part 'detail_ui_state.freezed.dart';
 @freezed
 class DetailUiState with _$DetailUiState {
   const factory DetailUiState({
-    required String city,
+    required String cityName,
     required List<Map<String, int>> chartData,
     required Map<String, List<WeatherData>> threeHoursWeather,
   }) = _DetailUiState;
@@ -15,7 +15,7 @@ class DetailUiState with _$DetailUiState {
   factory DetailUiState.fromWeatherResponse(
       WeatherResponseModel weatherResponseModel) {
     return DetailUiState(
-      city: weatherResponseModel.city.name,
+      cityName: weatherResponseModel.city.name,
       chartData: weatherResponseModel.timeAndPopList,
       threeHoursWeather: weatherResponseModel.groupByDate(),
     );

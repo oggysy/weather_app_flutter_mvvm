@@ -40,7 +40,7 @@ class _DetailPageState extends ConsumerState<DetailPage> {
           return Column(
             children: [
               Text(
-                data.city,
+                data.cityName,
                 style: const TextStyle(
                   fontSize: 20,
                 ),

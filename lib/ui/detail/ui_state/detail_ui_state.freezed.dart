@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$DetailUiState {
-  String get city => throw _privateConstructorUsedError;
+  String get cityName => throw _privateConstructorUsedError;
   List<Map<String, int>> get chartData => throw _privateConstructorUsedError;
   Map<String, List<WeatherData>> get threeHoursWeather =>
       throw _privateConstructorUsedError;
@@ -33,7 +33,7 @@ abstract class $DetailUiStateCopyWith<$Res> {
       _$DetailUiStateCopyWithImpl<$Res, DetailUiState>;
   @useResult
   $Res call(
-      {String city,
+      {String cityName,
       List<Map<String, int>> chartData,
       Map<String, List<WeatherData>> threeHoursWeather});
 }
@@ -51,14 +51,14 @@ class _$DetailUiStateCopyWithImpl<$Res, $Val extends DetailUiState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? city = null,
+    Object? cityName = null,
     Object? chartData = null,
     Object? threeHoursWeather = null,
   }) {
     return _then(_value.copyWith(
-      city: null == city
-          ? _value.city
-          : city // ignore: cast_nullable_to_non_nullable
+      cityName: null == cityName
+          ? _value.cityName
+          : cityName // ignore: cast_nullable_to_non_nullable
               as String,
       chartData: null == chartData
           ? _value.chartData
@@ -81,7 +81,7 @@ abstract class _$$DetailUiStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String city,
+      {String cityName,
       List<Map<String, int>> chartData,
       Map<String, List<WeatherData>> threeHoursWeather});
 }
@@ -97,14 +97,14 @@ class __$$DetailUiStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? city = null,
+    Object? cityName = null,
     Object? chartData = null,
     Object? threeHoursWeather = null,
   }) {
     return _then(_$DetailUiStateImpl(
-      city: null == city
-          ? _value.city
-          : city // ignore: cast_nullable_to_non_nullable
+      cityName: null == cityName
+          ? _value.cityName
+          : cityName // ignore: cast_nullable_to_non_nullable
               as String,
       chartData: null == chartData
           ? _value._chartData
@@ -122,14 +122,14 @@ class __$$DetailUiStateImplCopyWithImpl<$Res>
 
 class _$DetailUiStateImpl implements _DetailUiState {
   const _$DetailUiStateImpl(
-      {required this.city,
+      {required this.cityName,
       required final List<Map<String, int>> chartData,
       required final Map<String, List<WeatherData>> threeHoursWeather})
       : _chartData = chartData,
         _threeHoursWeather = threeHoursWeather;
 
   @override
-  final String city;
+  final String cityName;
   final List<Map<String, int>> _chartData;
   @override
   List<Map<String, int>> get chartData {
@@ -149,7 +149,7 @@ class _$DetailUiStateImpl implements _DetailUiState {
 
   @override
   String toString() {
-    return 'DetailUiState(city: $city, chartData: $chartData, threeHoursWeather: $threeHoursWeather)';
+    return 'DetailUiState(cityName: $cityName, chartData: $chartData, threeHoursWeather: $threeHoursWeather)';
   }
 
   @override
@@ -157,7 +157,8 @@ class _$DetailUiStateImpl implements _DetailUiState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$DetailUiStateImpl &&
-            (identical(other.city, city) || other.city == city) &&
+            (identical(other.cityName, cityName) ||
+                other.cityName == cityName) &&
             const DeepCollectionEquality()
                 .equals(other._chartData, _chartData) &&
             const DeepCollectionEquality()
@@ -167,7 +168,7 @@ class _$DetailUiStateImpl implements _DetailUiState {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      city,
+      cityName,
       const DeepCollectionEquality().hash(_chartData),
       const DeepCollectionEquality().hash(_threeHoursWeather));
 
@@ -180,13 +181,13 @@ class _$DetailUiStateImpl implements _DetailUiState {
 
 abstract class _DetailUiState implements DetailUiState {
   const factory _DetailUiState(
-          {required final String city,
+          {required final String cityName,
           required final List<Map<String, int>> chartData,
           required final Map<String, List<WeatherData>> threeHoursWeather}) =
       _$DetailUiStateImpl;
 
   @override
-  String get city;
+  String get cityName;
   @override
   List<Map<String, int>> get chartData;
   @override
