@@ -30,8 +30,8 @@ class WeatherData with _$WeatherData {
 @freezed
 class WeatherItem with _$WeatherItem {
   const factory WeatherItem({
-    required double temp_min,
-    required double temp_max,
+    @JsonKey(name: 'temp_min') required double tempMin,
+    @JsonKey(name: 'temp_max') required double tempMax,
     required int humidity,
   }) = _WeatherItem;
 

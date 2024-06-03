@@ -412,8 +412,10 @@ WeatherItem _$WeatherItemFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$WeatherItem {
-  double get temp_min => throw _privateConstructorUsedError;
-  double get temp_max => throw _privateConstructorUsedError;
+  @JsonKey(name: 'temp_min')
+  double get tempMin => throw _privateConstructorUsedError;
+  @JsonKey(name: 'temp_max')
+  double get tempMax => throw _privateConstructorUsedError;
   int get humidity => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -428,7 +430,10 @@ abstract class $WeatherItemCopyWith<$Res> {
           WeatherItem value, $Res Function(WeatherItem) then) =
       _$WeatherItemCopyWithImpl<$Res, WeatherItem>;
   @useResult
-  $Res call({double temp_min, double temp_max, int humidity});
+  $Res call(
+      {@JsonKey(name: 'temp_min') double tempMin,
+      @JsonKey(name: 'temp_max') double tempMax,
+      int humidity});
 }
 
 /// @nodoc
@@ -444,18 +449,18 @@ class _$WeatherItemCopyWithImpl<$Res, $Val extends WeatherItem>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? temp_min = null,
-    Object? temp_max = null,
+    Object? tempMin = null,
+    Object? tempMax = null,
     Object? humidity = null,
   }) {
     return _then(_value.copyWith(
-      temp_min: null == temp_min
-          ? _value.temp_min
-          : temp_min // ignore: cast_nullable_to_non_nullable
+      tempMin: null == tempMin
+          ? _value.tempMin
+          : tempMin // ignore: cast_nullable_to_non_nullable
               as double,
-      temp_max: null == temp_max
-          ? _value.temp_max
-          : temp_max // ignore: cast_nullable_to_non_nullable
+      tempMax: null == tempMax
+          ? _value.tempMax
+          : tempMax // ignore: cast_nullable_to_non_nullable
               as double,
       humidity: null == humidity
           ? _value.humidity
@@ -473,7 +478,10 @@ abstract class _$$WeatherItemImplCopyWith<$Res>
       __$$WeatherItemImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({double temp_min, double temp_max, int humidity});
+  $Res call(
+      {@JsonKey(name: 'temp_min') double tempMin,
+      @JsonKey(name: 'temp_max') double tempMax,
+      int humidity});
 }
 
 /// @nodoc
@@ -487,18 +495,18 @@ class __$$WeatherItemImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? temp_min = null,
-    Object? temp_max = null,
+    Object? tempMin = null,
+    Object? tempMax = null,
     Object? humidity = null,
   }) {
     return _then(_$WeatherItemImpl(
-      temp_min: null == temp_min
-          ? _value.temp_min
-          : temp_min // ignore: cast_nullable_to_non_nullable
+      tempMin: null == tempMin
+          ? _value.tempMin
+          : tempMin // ignore: cast_nullable_to_non_nullable
               as double,
-      temp_max: null == temp_max
-          ? _value.temp_max
-          : temp_max // ignore: cast_nullable_to_non_nullable
+      tempMax: null == tempMax
+          ? _value.tempMax
+          : tempMax // ignore: cast_nullable_to_non_nullable
               as double,
       humidity: null == humidity
           ? _value.humidity
@@ -512,21 +520,25 @@ class __$$WeatherItemImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$WeatherItemImpl implements _WeatherItem {
   const _$WeatherItemImpl(
-      {required this.temp_min, required this.temp_max, required this.humidity});
+      {@JsonKey(name: 'temp_min') required this.tempMin,
+      @JsonKey(name: 'temp_max') required this.tempMax,
+      required this.humidity});
 
   factory _$WeatherItemImpl.fromJson(Map<String, dynamic> json) =>
       _$$WeatherItemImplFromJson(json);
 
   @override
-  final double temp_min;
+  @JsonKey(name: 'temp_min')
+  final double tempMin;
   @override
-  final double temp_max;
+  @JsonKey(name: 'temp_max')
+  final double tempMax;
   @override
   final int humidity;
 
   @override
   String toString() {
-    return 'WeatherItem(temp_min: $temp_min, temp_max: $temp_max, humidity: $humidity)';
+    return 'WeatherItem(tempMin: $tempMin, tempMax: $tempMax, humidity: $humidity)';
   }
 
   @override
@@ -534,17 +546,15 @@ class _$WeatherItemImpl implements _WeatherItem {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$WeatherItemImpl &&
-            (identical(other.temp_min, temp_min) ||
-                other.temp_min == temp_min) &&
-            (identical(other.temp_max, temp_max) ||
-                other.temp_max == temp_max) &&
+            (identical(other.tempMin, tempMin) || other.tempMin == tempMin) &&
+            (identical(other.tempMax, tempMax) || other.tempMax == tempMax) &&
             (identical(other.humidity, humidity) ||
                 other.humidity == humidity));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, temp_min, temp_max, humidity);
+  int get hashCode => Object.hash(runtimeType, tempMin, tempMax, humidity);
 
   @JsonKey(ignore: true)
   @override
@@ -562,17 +572,19 @@ class _$WeatherItemImpl implements _WeatherItem {
 
 abstract class _WeatherItem implements WeatherItem {
   const factory _WeatherItem(
-      {required final double temp_min,
-      required final double temp_max,
+      {@JsonKey(name: 'temp_min') required final double tempMin,
+      @JsonKey(name: 'temp_max') required final double tempMax,
       required final int humidity}) = _$WeatherItemImpl;
 
   factory _WeatherItem.fromJson(Map<String, dynamic> json) =
       _$WeatherItemImpl.fromJson;
 
   @override
-  double get temp_min;
+  @JsonKey(name: 'temp_min')
+  double get tempMin;
   @override
-  double get temp_max;
+  @JsonKey(name: 'temp_max')
+  double get tempMax;
   @override
   int get humidity;
   @override
