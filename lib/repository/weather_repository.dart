@@ -17,8 +17,8 @@ class WeatherRepository implements WeatherRepositoryInterface {
         city: city,
       );
       return data;
-    } on Exception catch (exception) {
-      throw Exception(exception);
+    } catch (_) {
+      rethrow;
     }
   }
 
@@ -33,8 +33,8 @@ class WeatherRepository implements WeatherRepositoryInterface {
         lon: lon,
       );
       return data;
-    } on Exception catch (exception) {
-      throw Exception(exception);
+    } catch (_) {
+      rethrow;
     }
   }
 
