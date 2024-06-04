@@ -47,7 +47,7 @@ class DetailViewModel extends _$DetailViewModel {
     );
   }
 
-  Future<Uint8List?> fetchIconImage({
+  Future<Uint8List> fetchIconImage({
     required String iconName,
   }) async {
     try {
@@ -56,7 +56,7 @@ class DetailViewModel extends _$DetailViewModel {
           .fetchIconImage(iconName: iconName);
       return response;
     } catch (e) {
-      return null;
+      throw Exception(e);
     }
   }
 }
