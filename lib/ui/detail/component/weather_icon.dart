@@ -21,6 +21,11 @@ class WeathreIcon extends ConsumerWidget {
             width: 50,
             height: 50,
           );
+        } else if (snapshot.connectionState == ConnectionState.waiting) {
+          return const SizedBox(
+            width: 50,
+            height: 50,
+          );
         } else {
           return const Text('No data');
         }
