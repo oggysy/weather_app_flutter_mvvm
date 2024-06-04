@@ -5,6 +5,8 @@ import 'package:weather_app_flutter_mvvm/repository/location_repository_interfac
 
 final locationrRepositoryProvider = Provider<LocationRepositoryInterface>(
   (ref) => LocationRepository(
-    dataStore: ref.read(locationDataStoreProvider),
+    dataStore: ref.read(
+      locationDataStoreProvider,
+    ),
   ),
 );
