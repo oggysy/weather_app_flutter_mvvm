@@ -1,34 +1,31 @@
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:weather_app_flutter_mvvm/ui/detail/component/pop_chart.dart';
 import 'package:weather_app_flutter_mvvm/ui/detail/component/weather_list.dart';
 import 'package:weather_app_flutter_mvvm/ui/detail/view_model/detail_view_model.dart';
 
-class DetailPage extends ConsumerStatefulWidget {
+class DetailPage extends HookConsumerWidget {
   const DetailPage(this.prefecture, {super.key});
 
   final String prefecture;
 
   @override
-  ConsumerState<DetailPage> createState() => _DetailPageState();
-}
-
-class _DetailPageState extends ConsumerState<DetailPage> {
-  @override
-  void initState() {
-    super.initState();
-    Future.microtask(() {
-      ref
-          .read(detailViewModelProvider.notifier)
-          .fetchWeatherByCity(widget.prefecture);
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final uiState = ref.watch(detailViewModelProvider);
+    useEffect(() {
+      WidgetsBinding.instance.addPostFrameCallback(
+        (_) {
+          ref
+              .read(detailViewModelProvider.notifier)
+              .fetchWeatherByCity(prefecture);
+        },
+      );
+      return null;
+    }, const []);
+
     return Scaffold(
       appBar: AppBar(),
       body: Center(
