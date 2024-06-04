@@ -19,7 +19,7 @@ class LocationDataStore implements LocationDataStoreInterface {
 
   @override
   Future<Position> getCurrentLocation() async {
-    bool hasPermission = await requestPermission();
+    final bool hasPermission = await requestPermission();
     if (!hasPermission) {
       Exception("位置情報が許可されていません");
     }
