@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:weather_app_flutter_mvvm/ui/detail/view/detail_for_city_page.dart';
-import 'package:weather_app_flutter_mvvm/ui/detail/view/detail_page.dart';
 
 class PrefecturePage extends StatelessWidget {
   static const List<String> prefectures = [
