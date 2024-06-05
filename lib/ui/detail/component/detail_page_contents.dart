@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:weather_app_flutter_mvvm/extension/date_time_extension.dart';
 import 'package:weather_app_flutter_mvvm/ui/componet/normal_alert_dialog.dart';
 import 'package:weather_app_flutter_mvvm/ui/detail/component/pop_chart.dart';
 import 'package:weather_app_flutter_mvvm/ui/detail/component/weather_list.dart';
@@ -32,6 +33,7 @@ class DetailPageContent extends ConsumerWidget {
     return Center(
       child: uiState.when(
         data: (data) {
+          final String currentDate = DateTime.now().asStringYMD;
           return Column(
             children: [
               Text(
@@ -40,7 +42,7 @@ class DetailPageContent extends ConsumerWidget {
                   fontSize: 20,
                 ),
               ),
-              const Text('2024年5月13日'),
+              Text(currentDate),
               const Text('降水確率'),
               SizedBox(
                 width: double.infinity,
