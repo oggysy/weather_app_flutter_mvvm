@@ -28,6 +28,7 @@ dependencies:
   geolocator: ^12.0.0
   geolocator_android: 4.5.5
   flutter_local_notifications: ^17.1.2
+  timezone: ^0.9.3
 
 flutter_native_splash:
   image: 'assets/images/splash_logo.png'
