@@ -15,19 +15,20 @@ class WeathreIcon extends ConsumerWidget {
     return FutureBuilder(
       future: image,
       builder: (BuildContext context, AsyncSnapshot snapshot) {
-        if (snapshot.hasData) {
-          return Image.memory(
-            snapshot.data,
-            width: 50,
-            height: 50,
-          );
-        } else if (snapshot.connectionState == ConnectionState.waiting) {
-          return const SizedBox(
-            width: 50,
-            height: 50,
-          );
-        } else {
-          return const Text('No data');
+        switch (snapshot.connectionState) {
+          case ConnectionState.done:
+            return Image.memory(
+              snapshot.data,
+              width: 50,
+              height: 50,
+            );
+          case ConnectionState.waiting:
+            return const SizedBox(
+              width: 50,
+              height: 50,
+            );
+          default:
+            return const Text('No data');
         }
       },
     );
