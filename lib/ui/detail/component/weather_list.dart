@@ -38,7 +38,7 @@ class WeatherList extends StatelessWidget {
                       maxTemperature: event.main.tempMax.toStringAsFixed(1),
                       minTemperature: event.main.tempMin.toStringAsFixed(1),
                       humidityLevel: event.main.humidity.toString(),
-                      imageName: "01",
+                      imageName: event.weather.first.icon,
                       time: event.dt.toStringHHMMFromEpoch(),
                     ),
                   ),

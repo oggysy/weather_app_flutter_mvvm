@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:weather_app_flutter_mvvm/ui/detail/component/weather_icon.dart';
 
 class WeatherListCell extends StatelessWidget {
   final String time;
@@ -25,11 +26,7 @@ class WeatherListCell extends StatelessWidget {
           Text(time),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: Image.asset(
-              'assets/images/splash_logo.png',
-              width: 50,
-              height: 50,
-            ),
+            child: WeathreIcon(imageName),
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
