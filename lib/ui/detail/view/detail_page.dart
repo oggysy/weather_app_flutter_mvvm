@@ -15,9 +15,12 @@ class DetailPage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final uiState = ref.watch(detailViewModelProvider);
-    ref.listen<String>(
+    ref.listen<String?>(
       detailErrorStateProvider,
       (prev, next) {
+        if (next == null) {
+          return;
+        }
         showDialog(
           context: context,
           builder: ((context) {
