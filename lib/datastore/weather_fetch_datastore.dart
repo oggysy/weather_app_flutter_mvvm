@@ -57,9 +57,41 @@ class WeatherFetchDataStore implements WeatherFetchDataStoreInterface {
       {required Map<String, dynamic> parameter}) async {
     try {
       final response = await dio.get(_baseUrl, queryParameters: parameter);
-      return WeatherResponseModel.fromJson(response.data);
+      try {
+        final data = WeatherResponseModel.fromJson(response.data);
+        return data;
+      } catch (_) {
+        throw Exception('デコード失敗');
+      }
+    } on DioException catch (dioException) {
+      final message = _handleErrorMessage(dioException);
+      throw Exception(message);
     } on Exception catch (exception) {
       throw Exception(exception);
+    }
+  }
+
+  String _handleErrorMessage(DioException dioException) {
+    if (dioException.type == DioExceptionType.connectionTimeout ||
+        dioException.type == DioExceptionType.sendTimeout ||
+        dioException.type == DioExceptionType.receiveTimeout) {
+      return 'タイムアウトしました';
+    } else if (dioException.type == DioExceptionType.badResponse) {
+      final statusCode = dioException.response?.statusCode;
+      if (statusCode == null) {
+        return '不明なエラー';
+      }
+      if (statusCode >= 400 && statusCode < 500) {
+        return 'クライエントエラー';
+      } else if (statusCode >= 500 && statusCode < 600) {
+        return 'サーバーエラー';
+      } else {
+        return '不明なエラー';
+      }
+    } else if (dioException.type == DioExceptionType.unknown) {
+      return '不明なエラー';
+    } else {
+      return 'ネットワークに接続できませんでした。';
     }
   }
 }
