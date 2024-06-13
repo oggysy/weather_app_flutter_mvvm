@@ -18,11 +18,7 @@ class NotificationService implements NotificationServiceInterface {
   Future<bool> checkPendingNotifications() async {
     final List<PendingNotificationRequest> pendingNotificationRequests =
         await flutterLocalNotificationsPlugin.pendingNotificationRequests();
-    if (pendingNotificationRequests.isEmpty) {
-      return false;
-    } else {
-      return true;
-    }
+    return pendingNotificationRequests.isNotEmpty;
   }
 
   @override
