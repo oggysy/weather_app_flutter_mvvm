@@ -1,13 +1,11 @@
-import 'package:timezone/timezone.dart' as tz;
-
-abstract class NotificationDataStoreInterface {
+abstract class NotificationServiceInterface {
   void initializeNotifications();
 
   Future<bool> checkPendingNotifications();
 
   Future<bool> checkNotificationPermissions();
 
-  Future<bool> scheduleDailyNotification({required tz.TZDateTime time});
+  Future<bool> scheduleDailyNotification({required DateTime time});
 
   Future<void> cancelAllNotifications();
 }

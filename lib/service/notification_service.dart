@@ -1,10 +1,10 @@
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:timezone/timezone.dart' as tz;
-import 'package:weather_app_flutter_mvvm/datastore/notification_datasotore_interface.dart';
+import 'package:weather_app_flutter_mvvm/extension/date_time_extension.dart';
+import 'package:weather_app_flutter_mvvm/service/notification_service_interface.dart';
 
-class NotificationDataStore implements NotificationDataStoreInterface {
+class NotificationService implements NotificationServiceInterface {
   final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
-  NotificationDataStore({required this.flutterLocalNotificationsPlugin});
+  NotificationService({required this.flutterLocalNotificationsPlugin});
 
   @override
   void initializeNotifications() async {
@@ -36,13 +36,14 @@ class NotificationDataStore implements NotificationDataStoreInterface {
   }
 
   @override
-  Future<bool> scheduleDailyNotification({required tz.TZDateTime time}) async {
+  Future<bool> scheduleDailyNotification({required DateTime time}) async {
     try {
+      final tz = time.toTZDateTime();
       await flutterLocalNotificationsPlugin.zonedSchedule(
         0,
         '今日の天気を確認',
         '通知をタップして今日の天気を確認',
-        time,
+        tz,
         const NotificationDetails(
           iOS: DarwinNotificationDetails(
             badgeNumber: 1,
