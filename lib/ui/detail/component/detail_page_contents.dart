@@ -16,9 +16,12 @@ class DetailPageContent extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    ref.listen<String>(
+    ref.listen<String?>(
       detailErrorStateProvider,
       (prev, next) {
+        if (next == null) {
+          return;
+        }
         showDialog(
           context: context,
           builder: ((context) {
