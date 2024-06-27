@@ -4,7 +4,6 @@ import 'package:weather_app_flutter_mvvm/extension/date_time_extension.dart';
 import 'package:weather_app_flutter_mvvm/ui/componet/normal_alert_dialog.dart';
 import 'package:weather_app_flutter_mvvm/ui/detail/component/pop_chart.dart';
 import 'package:weather_app_flutter_mvvm/ui/detail/component/weather_list.dart';
-import 'package:weather_app_flutter_mvvm/ui/detail/ui_state/detail_error_state.dart';
 import 'package:weather_app_flutter_mvvm/ui/detail/ui_state/detail_ui_state.dart';
 
 class DetailPageContent extends ConsumerWidget {
@@ -14,25 +13,21 @@ class DetailPageContent extends ConsumerWidget {
   });
   final AsyncValue<DetailUiState> uiState;
 
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    ref.listen<String?>(
-      detailErrorStateProvider,
-      (prev, next) {
-        if (next == null) {
-          return;
-        }
-        showDialog(
-          context: context,
-          builder: ((context) {
-            return NormalAlertDialog(
-              title: 'エラー',
-              message: next,
-            );
-          }),
+  void showErrorDialog(BuildContext context, String message) {
+    final errorMessage = message.replaceFirst('Exception: ', '');
+    showDialog(
+      context: context,
+      builder: (context) {
+        return NormalAlertDialog(
+          title: 'エラー',
+          message: errorMessage,
         );
       },
     );
+  }
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
     return Center(
       child: uiState.when(
         data: (data) {
@@ -68,6 +63,10 @@ class DetailPageContent extends ConsumerWidget {
           );
         },
         error: (e, s) {
+          WidgetsBinding.instance.addPostFrameCallback((_) => showErrorDialog(
+                context,
+                e.toString(),
+              ));
           return const Text('天気情報を取得できませんでした');
         },
         loading: () {
