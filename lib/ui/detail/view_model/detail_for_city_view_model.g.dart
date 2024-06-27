@@ -7,7 +7,7 @@ part of 'detail_for_city_view_model.dart';
 // **************************************************************************
 
 String _$detailForCityViewModelHash() =>
-    r'de8d28252aafbc10769026f16bb80c1b11f30dd8';
+    r'3184050e57a84841f711b262bc11a5a96457f3ea';
 
 /// See also [DetailForCityViewModel].
 @ProviderFor(DetailForCityViewModel)

@@ -7,7 +7,7 @@ part of 'detail_for_location_view_model.dart';
 // **************************************************************************
 
 String _$detailForLocationViewModelHash() =>
-    r'84663104b668667bd7d75723f42cefa2d2a8bbfb';
+    r'f65807cf0a9d98cea7310b0eae8cdf0edc0e53e0';
 
 /// See also [DetailForLocationViewModel].
 @ProviderFor(DetailForLocationViewModel)
