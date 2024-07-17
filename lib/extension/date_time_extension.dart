@@ -1,4 +1,5 @@
 import 'package:intl/intl.dart';
+import 'package:timezone/timezone.dart' as tz;
 
 extension DateTimeExtension on DateTime {
   String get asStringYMD {
@@ -11,5 +12,10 @@ extension DateTimeExtension on DateTime {
 
   String get asStringHHMM {
     return DateFormat('HH:mm').format(this);
+  }
+
+  tz.TZDateTime toTZDateTime() {
+    final location = tz.getLocation('Asia/Tokyo');
+    return tz.TZDateTime.from(this, location);
   }
 }
