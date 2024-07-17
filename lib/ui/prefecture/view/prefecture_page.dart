@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:weather_app_flutter_mvvm/ui/detail/view/detail_page.dart';
+import 'package:weather_app_flutter_mvvm/ui/detail/view/detail_for_city_page.dart';
 
 class PrefecturePage extends StatelessWidget {
   static const List<String> prefectures = [
@@ -72,7 +72,7 @@ class PrefecturePage extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => DetailPage(prefectures[index]),
+                  builder: (context) => DetailForCityPage(prefectures[index]),
                   fullscreenDialog: true,
                 ),
               );
